@@ -181,6 +181,30 @@
                 #search > form:hover{
                     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12);
                 }
+                /*svg를 삽입하진 않더라도 로고 크기만큼을 차지해야 다른 설정이 맞아떨어짐*/
+                #search-svg {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 68px;
+                    margin-right: 12px;
+                    height: 100%;
+                    padding-left: 10px;
+                    position: relative;
+                }
+                #search-svg::after{
+                    display: none;
+                }
+                #search > form:focus-within #search-svg::after{
+                    content: '';
+                    width: 1px;
+                    height: 20px;
+                    background-color: #e4e4e4;
+                    position: absolute;
+                    display: inline-block;
+                    right: 0;
+                    top: 20px;
+                }
                 #search-input{
                     width: 480px;
                     padding: 17px 0;
@@ -246,6 +270,10 @@
             </style>
             <div id="search">
                 <form action="">
+                    <!--svg를 삽입하진 않더라도 로고 크기만큼을 차지해야 다른 설정이 맞아떨어짐-->
+                    <a id="search-svg" href="#">
+                        <div></div>
+                    </a>
                     <label for="search-input" class="blind">검색어 입력</label>
                     <input id="search-input" type="text" placeholder="검색어를 입력하세요.">
                     <div id="search-right">
