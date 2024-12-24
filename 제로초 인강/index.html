@@ -85,7 +85,6 @@
         #wrap-center{
             width: 1280px;
             display: inline-block;
-            background-color: yellow;
         }
         #header{
             text-align: left;
@@ -172,7 +171,7 @@
             </div>
             <style>
                 #search > form{
-                    display: inline-block;
+                    display: inline-flex;
                     height: 58px;
                     width: 706px;
                     border: 1px solid #03c75a;
@@ -189,7 +188,15 @@
                     outline: none;
                 }
                 #search-right{
-                    display: inline-block;
+                    flex: 1;
+                    display: flex;
+                    align-items: stretch;
+                    justify-content: flex-end;
+                }
+                #search-keyboard, #search-recent, #search-button{
+                    border: none;
+                    background: transparent;
+                    cursor: pointer;
                 }
                 #search-keyboard::before{
                     content: "";
