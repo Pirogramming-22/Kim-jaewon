@@ -103,6 +103,7 @@
             cursor: pointer;
         }
         #header-hamburger:hover::before {
+            z-index: 0;
             position: absolute;
             content: '';
             left: 1px;
@@ -113,12 +114,22 @@
             border-radius: 50%;
         }
         #header-hamburger > div {
+            z-index: 1;
+            position: relative;
             background-image: url(./sp_main.png);
             background-size: 452px 436px;
             background-position: -311px -166px;
             background-repeat: no-repeat;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
+        }
+        .blind {
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -128,6 +139,7 @@
             <div id="header">
                 <button id="header-hamburger">
                     <div></div>
+                    <span class="blind">확장 영역</span>
                 </button>
             </div>
             <div id="search"></div>
