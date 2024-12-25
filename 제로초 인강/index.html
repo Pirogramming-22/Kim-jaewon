@@ -693,12 +693,12 @@
                     width: 1px;
                     height: 12px;
                 }
-                #main-newstand-animation a:first-of-type{
+                #main-newstand-animation > a:first-of-type{
                     position: relative;
                     line-height: 26px;
                     top: -1px;
                 }
-                #main-newstand-animation a:first-of-type::after{
+                #main-newstand-animation > a:first-of-type::after{
                     content: '';
                     display: inline-block;
                     width: 3px;
@@ -709,10 +709,48 @@
                     border-radius: 50%;
                     vertical-align: 5px;
                 }
-                #main-newstand-animation a:last-of-type{
-                    text-overflow: ellipsis;
+                /*3-10강 별도의 커밋은 없지만 그래도 해보기*/
+                @keyframes newsAnimation{
+                    0% {
+                        transform: translateY(0);
+                    }
+                    16.666% {
+                        transform: translateY(0);
+                    }
+                    33.333% {
+                        transform: translateY(-26px);
+                    }
+                    50% {
+                        transform: translateY(-26px);
+                    }
+                    66.666% {
+                        transform: translateY(-52px);
+                    }
+                    83.333% {
+                        transform: translateY(-52px);
+                    }
+                    91.66666% {
+                        transform: translateY(-65px);
+                    }
+                    91.66667% {
+                        transform: translateY(13px);
+                    }
+                    100% {
+                        transform: translateY(0);
+                    }
+                }
+                #main-newstand-animation-target{
                     width: 400px;
+                    display: inline-block;
+                    overflow: hidden;
+                }
+                #main-newstand-animation-target > div{
+                    animation: newsAnimation 5s linear 3s infinite;
+                }
+                #main-newstand-animation-target a{
+                    text-overflow: ellipsis;
                     white-space: nowrap;
+                    width: 400px;
                     display: inline-block;
                     overflow: hidden;
                 }
@@ -873,15 +911,41 @@
                     padding: 10px 0;
                 }
                 #main-shopping-grid{
-                    margin-top: 20px;
+                    margin-top: 18px;
                     display: grid;
-                    grid-template-rows:90px 95px 185px;
+                    grid-template-rows:90px 95px 170px;
                     grid-template-columns: 1fr 1fr 1fr 1fr 250px;
                     column-gap: 20px;
                 }
+                #main-shopping-grid .item{
+                    line-height: 20px;
+                    letter-spacing: -0.8px;
+                    font-size: 1.4rem;
+                }
+                #main-shopping-grid .item > .image{
+                    width:115px;
+                    height: 115px;
+                    border-radius: 4px;
+                    background-color: gray;
+                }
+                #main-shopping-grid .item > .text{
+                    text-align: left;
+                }
                 .item:nth-child(1),.item:nth-child(2),.item:nth-child(3),.item:nth-child(4){
-                    grid-row: 1/3;
-                    
+                    grid-row: 1/3; 
+                }
+                .item:nth-child(5),.item:nth-child(6), .item:nth-child(11) >div::first-child{
+                    padding: 10px 12px 5px;
+                    border-radius: 4px;
+                    background: rgba(245,248,251,.6);
+                    border: 1px solid rgba(0,0,0,.05);
+                }
+                .item:nth-child(6){
+                    margin: 11px 0;
+                }
+                .item:nth-child(11) > div:first-child{
+                    margin-bottom: 10px;
+                    height: 135px;
                 }
             </style>
             <main id="main">
@@ -901,7 +965,12 @@
                                     <a href="#">전체언론사</a>
                                     <div id="main-newstand-animation">
                                         <a href="#">연합뉴스</a>
-                                        <a href="#">속보 배고프고 힘들다 가나다라마바사아자차카타파하가나다라마바사아자차카타파하</a>
+                                        <div id="main-newstand-animation-target">
+                                            <a href="#">속보 배고프고 힘들다 가나다라마바사아자차카타파하가나다라마바사아자차카타파하</a>
+                                            <a href="#">방금 빵빠레먹음 가나다라마바사아자차카타파하가나다라마바사아자차카타파하</a>
+                                            <a href="#">메이아이비 해애애애피이 가나다라마바사아자차카타파하가나다라마바사아자차카타파하</a>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="right">
@@ -949,7 +1018,7 @@
                             <header>
                                 <a href="#" class="bold">쇼핑</a>
                                 <a href="#" class="slash">맨즈</a>
-                                <a href="#" class="slash">원쁠딜/a>
+                                <a href="#" class="slash">원쁠딜</a>
                                 <a href="#" class="slash">쇼핑라이브</a>
                             </header>
                             <div id="main-shopping-gray">
@@ -967,17 +1036,44 @@
                                 </div>
                             </div>
                             <div id="main-shopping-grid">
-                                <div class="item">1</div>
-                                <div class="item">2</div>
-                                <div class="item">3</div>
-                                <div class="item">4</div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
                                 <div class="item">5</div>
                                 <div class="item">6</div>
-                                <div class="item">7</div>
-                                <div class="item">8</div>
-                                <div class="item">9</div>
-                                <div class="item">10</div>
-                                <div class="item">11</div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="image"></div>
+                                    <div class="text">독보적인 퀄리티 우린 품격을 입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div></div>
+                                    <div>아웃렛 쇼핑 득템찬스! 시즌오프세일</div>
+                                </div>
                             </div>
                         </div>
                         <footer>
