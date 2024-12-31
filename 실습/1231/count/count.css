@@ -1,0 +1,19 @@
+#main {
+    display: flex;
+    width: 100dvh;
+    height: 100dvh;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    font-size: 5rem;
+}
+
+#minus_button, #plus_button {
+    padding-top: 1px;
+    cursor: pointer;
+}
+
+#mius_button:hover,
+#plus_button:hover {
+    opacity: 0.5;
+}
