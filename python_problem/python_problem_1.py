@@ -4,6 +4,7 @@ turn = 0
 
 while True:
     current_player = players[turn]
+    no_current_player = players[1 - turn]
     try:
         count = int(input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능) : "))
         if count not in [1, 2, 3]:
@@ -16,5 +17,6 @@ while True:
         num += 1
         print(f"{current_player}: ", num)
         if num >= 31:
+            print(f"{no_current_player} win!")
             exit()
     turn = 1 - turn
