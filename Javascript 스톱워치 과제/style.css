@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.stopwatch-container {
+    text-align: center;
+    background: #a1a49e;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.timer-display {
+    font-size: 40px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.button-group button {
+    background: #f4f4f4;
+    border: none;
+    border-radius: 25px;
+    margin: 0 5px;
+    padding: 10px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.record-container {
+    margin-top: 20px;
+    text-align: space-between;
+    padding: 5px 10px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+
+input[type="checkbox"] {
+    appearance: none; 
+    width: 20px; 
+    height: 20px; 
+    border: 2px solid black; 
+    border-radius: 50%; 
+    background: white; 
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background: black; 
+}
+
+.record-header {
+    background-color: #a1a49e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+}
+
+.record-header span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#delete-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+#record-list {
+    list-style: none;
+    padding: 0;
+}
+
+#record-list li {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-right: 45%;
+    border-radius: 5px;
+}
+
