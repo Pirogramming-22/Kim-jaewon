@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 작성/수정</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4caf50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>리뷰 {% if action == 'create' %}작성{% else %}수정{% endif %}</h1>
+        <form method="POST" action="{% if action == 'create' %}
+                                    {% url 'movie:review_create' %}
+                                    {% else %}
+                                    {% url 'review:review_update' review.pk %}
+                                    {% endif %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">영화 제목:</label>
+                <input type="text" name="title" id="title" value="{{ review.title|default:'' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="release_year">개봉년도</label>
+                <input type="text" name="release_year" id="release_year" value="{{ review.release_year|default:'' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="director">감독:</label>
+                <input type="text" name="director" id="director" value="{{ review.director|default:'' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="main_actor">주연:</label>
+                <input type="text" name="main_actor" id="main_actor" value="{{ review.main_actor|default:'' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="genre">장르:</label>
+                <select name="genre" id="genre" required>
+                    <option value="" disabled selected>장르를 선택하세요</option>
+                    <option value="action" {% if review.genre == 'action' %}selected{% endif %}>Action</option>
+                    <option value="comedy" {% if review.genre == 'comedy' %}selected{% endif %}>Comedy</option>
+                    <option value="drama" {% if review.genre == 'drama' %}selected{% endif %}>Drama</option>
+                    <option value="fantasy" {% if review.genre == 'fantasy' %}selected{% endif %}>Fantasy</option>
+                    <option value="horror" {% if review.genre == 'horror' %}selected{% endif %}>Horror</option>
+                    <option value="romance" {% if review.genre == 'romance' %}selected{% endif %}>Romance</option>
+                    <option value="sci-fi" {% if review.genre == 'sci-fi' %}selected{% endif %}>Sci-Fi</option>
+                    <option value="thriller" {% if review.genre == 'thriller' %}selected{% endif %}>Thriller</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="running_time">러닝타임 (분):</label>
+                <input type="number" name="running_time" id="running_time" value="{{ review.running_time|default:'' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="rating">별점 (1~5):</label>
+                <input type="number" name="rating" id="rating" value="{{ review.rating|default:'' }}" min="1" max="5" required>
+            </div>
+            <div class="form-group">
+                <label for="content">리뷰 내용:</label>
+                <textarea name="content" id="content" rows="5" required>{{ review.content|default:'' }}</textarea>
+            </div>
+            <button type="submit">저장</button>
+        </form>
+    </div>
+</body>
+</html>
