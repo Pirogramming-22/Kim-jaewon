@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 디테일</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        h2 {
+            color: #afd259;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+
+        button {
+            padding: 10px 15px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        form {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ review.title }}</h1>
+        <p><strong>감독:</strong> {{ review.director }}</p>
+        <p><strong>주연:</strong> {{ review.main_actor }}</p>
+        <p><strong>장르:</strong> {{ review.genre }}</p>
+        <p><strong>러닝타임:</strong> {{ review.running_time }}분</p>
+
+        <h2>리뷰</h2>
+        <p><strong>별점:</strong> {{ review.rating }}/5</p>
+        <p>{{ review.content }}</p>
+
+        <a href="{% url 'movie:review_list' %}">my Movie reviews</a>
+        <a href="{% url 'review:review_update' review.pk %}">수정</a>
+        <form method="POST" action="{% url 'review:review_delete' review.pk %}">
+            {% csrf_token %}
+            <button type="submit">삭제</button>
+        </form>
+    </div>
+</body>
+</html>
