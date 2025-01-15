@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}아이디어 사이트{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <h1 class="logo">
+          <a href="{% url 'idea_list' %}">아이디어 사이트</a>
+        </h1>
+        <nav>
+          <ul class="nav-list">
+            <li><a href="{% url 'idea_create' %}">아이디어 등록</a></li>
+            <li><a href="{% url 'idea_list' %}">아이디어 관리</a></li>
+            <li><a href="{% url 'devtool_create' %}">개발툴 등록</a></li>
+            <li><a href="{% url 'devtool_list' %}">개발툴 관리</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      {% block content %}
+      <!-- 개별 템플릿에서 이곳을 채웁니다 -->
+      {% endblock %}
+    </main>
+  </body>
+</html>
