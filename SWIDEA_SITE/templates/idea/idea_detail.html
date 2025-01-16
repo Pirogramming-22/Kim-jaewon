@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}아이디어 상세 보기{% endblock %}
+
+{% block content %}
+<section class="idea-detail">
+    <div class="detail-container">
+        <h2 class="detail-title">{{ idea.title }}</h2>
+        <img src="{{ idea.image.url }}" alt="{{ idea.title }}" class="detail-thumbnail" />
+        <p class="detail-content">{{ idea.content }}</p>
+        <p class="detail-interest">관심도: <strong>{{ idea.interest }}</strong></p>
+        <p class="detail-devtools">
+            개발툴:
+            <ul>
+                {% for devtool in idea.devtools.all %}
+                <li>
+                    <a href="{% url 'devtool_detail' devtool.pk %}">{{ devtool.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </p>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{% url 'idea_update' idea.pk %}" class="edit-button">수정</a>
+        <form action="{% url 'idea_delete' idea.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="delete-button">삭제</button>
+        </form>
+        <a href="{% url 'idea_list' %}" class="back-button">목록으로 돌아가기</a>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const starButton = document.querySelector(".star-toggle");
+
+        starButton.addEventListener("click", () => {
+            const ideaId = starButton.getAttribute("data-id");
+
+            fetch(`/toggle_star/${ideaId}/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                starButton.innerHTML = data.is_starred ? "★ 찜하기 완료" : "☆ 찜하기";
+                starButton.setAttribute("data-is-starred", data.is_starred);
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    });
+</script>
+{% endblock %}

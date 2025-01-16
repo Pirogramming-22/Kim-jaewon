@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}개발툴 관리{% endblock %}
+
+{% block content %}
+<section class="devtool-list">
+    <h2 class="list-title">개발툴 목록</h2>
+    <ul class="devtool-cards">
+        {% for devtool in devtools %}
+        <li class="devtool-card">
+            <a href="{% url 'devtool_detail' devtool.pk %}" class="devtool-link">
+                <strong>{{ devtool.name }}</strong>
+            </a>
+            <p>종류:  {{ devtool.kind }}</p>
+            <p>{{ devtool.content }}</p>
+        </li>
+        {% empty %}
+        <p>등록된 개발툴이 없습니다.</p>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

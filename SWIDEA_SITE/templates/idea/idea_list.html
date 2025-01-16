@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}아이디어 관리{% endblock %}
+
+{% block content %}
+<section class="idea-list-section">
+    <div class="header-with-sort">
+        <h2 class="idea-list-title">아이디어 목록</h2>
+        <form method="get" class="sort-form">
+            <label for="sort">정렬 기준:</label>
+            <select name="sort" id="sort" onchange="this.form.submit()">
+                <option value="latest" {% if request.GET.sort == "latest" %}selected{% endif %}>최신순</option>
+                <option value="oldest" {% if request.GET.sort == "oldest" %}selected{% endif %}>등록순</option>
+                <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>이름순</option>
+                <option value="star" {% if request.GET.sort == "star" %}selected{% endif %}>찜하기순</option>
+            </select>
+        </form>
+    </div>
+    <div class="idea-list">
+        {% for idea in page_obj %}
+        <div class="idea-card">
+            <div class="star-container">
+                <button
+                    class="star-toggle"
+                    data-id="{{ idea.pk }}"
+                    data-is-starred="{{ idea.star.is_starred|default_if_none:False }}"
+                >
+                    {% if idea.star.is_starred %}
+                    ★
+                    {% else %}
+                    ☆
+                    {% endif %}
+                </button>
+            </div>
+            <img src="{{ idea.image.url }}" alt="{{ idea.title }}" class="thumbnail" />
+            <h3><a href="{% url 'idea_detail' idea.pk %}">{{ idea.title }}</a></h3>
+            <div class="interest-buttons">
+                <button class="interest-button increment" data-id="{{ idea.pk }}">+</button>
+                <p class="interest-text">관심도: {{ idea.interest }}</p>
+                <button class="interest-button decrement" data-id="{{ idea.pk }}">-</button>
+            </div>
+            <p>{{ idea.content }}</p>
+        </div>
+        {% empty %}
+        <p>등록된 아이디어가 없습니다.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- 페이지네이션 -->
+<div class="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort_option }}">이전</a>
+    {% endif %}
+
+    {% for page_num in page_obj.paginator.page_range %}
+    <a href="?page={{ page_num }}&sort={{ sort_option }}"
+       class="{% if page_num == page_obj.number %}active{% endif %}">
+        {{ page_num }}
+    </a>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}&sort={{ sort_option }}">다음</a>
+    {% endif %}
+</div>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 관심도 조정 버튼 처리
+        const interestButtons = document.querySelectorAll(".interest-button");
+
+        interestButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const ideaId = button.getAttribute("data-id");
+                const action = button.classList.contains("increment") ? "increment" : "decrement";
+
+                fetch(`/update_interest/${ideaId}/${action}/`, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}",
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const parent = button.closest(".interest-buttons");
+                        const interestText = parent.querySelector(".interest-text");
+                        interestText.textContent = `관심도: ${data.interest}`;
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+
+        // 찜 버튼 처리
+        const starButtons = document.querySelectorAll(".star-toggle");
+
+        starButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const ideaId = button.getAttribute("data-id");
+
+                fetch(`/toggle_star/${ideaId}/`, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}",
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.is_starred !== undefined) {
+                        button.textContent = data.is_starred ? "★" : "☆";
+                        button.setAttribute("data-is-starred", data.is_starred);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    });
+</script>
+
+{% endblock %}

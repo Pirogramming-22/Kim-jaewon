@@ -1,0 +1,388 @@
+/* 공통 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0.5em 0;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 헤더 */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  background-color: #343a40;
+  color: #fff;
+}
+
+.header-container .logo a {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header-container .nav-list {
+  display: flex;
+  gap: 1.5em;
+}
+
+.header-container .nav-list li a {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 페이지 제목과 정렬 기준 */
+.header-with-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+}
+
+.sort-form select {
+  padding: 0.4em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+/* 아이디어 목록 */
+.idea-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: flex-start;
+  padding: 1em;
+}
+
+.idea-card {
+  flex: 0 0 calc(25% - 1em);
+  max-width: calc(25% - 1em);
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.idea-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.5em;
+}
+
+.idea-card h3 {
+  margin: 0.5em 0;
+  font-size: 1.2em;
+}
+
+.interest-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.interest-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.interest-button:hover {
+  background-color: #0056b3;
+}
+
+/* 디테일 페이지 */
+.detail-thumbnail {
+  display: block;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+  margin: 0 auto 1em;
+}
+
+/* 아이디어 디테일 페이지 */
+.idea-detail {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-container {
+  margin-bottom: 2em;
+}
+
+.detail-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.detail-thumbnail {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-content,
+.detail-interest,
+.detail-devtools {
+  margin-bottom: 1em;
+  font-size: 1em;
+  color: #666;
+}
+
+.detail-devtools ul {
+  padding: 0;
+  margin: 0.5em 0;
+  list-style: none;
+}
+
+.detail-devtools li {
+  display: inline;
+  margin-right: 0.5em;
+}
+
+.detail-devtools li a {
+  text-decoration: underline;
+  color: #007bff;
+}
+
+
+.action-buttons a,
+.action-buttons button {
+  padding: 0.5em 1.5em;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  background: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.action-buttons a:hover,
+.action-buttons button:hover {
+  background-color: #f1f1f1;
+  color: #007bff;
+}
+
+.action-buttons .back-button {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.action-buttons .back-button:hover {
+  background-color: #ddd;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+  margin: 2em 0;
+}
+
+.pagination a {
+  padding: 0.5em 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+.pagination a.active {
+  background-color: #007bff;
+  color: #fff;
+  pointer-events: none;
+}
+
+/* devtool_detail 스타일 */
+.devtool-detail {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.devtool-detail .detail-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.devtool-detail .detail-content {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 1em;
+}
+
+.devtool-detail .detail-ideas-list {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+
+.devtool-detail .detail-ideas-list li {
+  margin-bottom: 0.5em;
+}
+
+.devtool-detail .detail-ideas-list a {
+  text-decoration: underline;
+  color: #007bff;
+}
+
+.devtool-detail .detail-ideas-list a:hover {
+  color: #0056b3;
+}
+
+/* devtool_list 스타일 */
+.devtool-list {
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.devtool-list .list-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.devtool-list .devtool-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.devtool-list .devtool-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1em;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.devtool-list .devtool-card .devtool-link {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.devtool-list .devtool-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+  padding: 0.5em;
+}
+
+.devtool-list .devtool-card p:last-of-type {
+  color: black;
+}
+
+/* 폼 스타일 */
+.form-container {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+  display: block;
+  margin: 0.5em 0 0.2em;
+  font-weight: bold;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container select {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1em;
+}
+
+.form-container button {
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
