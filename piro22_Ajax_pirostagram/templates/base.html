@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Pirostagram{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/layout.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/userInfo.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/highlights.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/posts.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}" />
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

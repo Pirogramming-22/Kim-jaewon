@@ -1,0 +1,33 @@
+.container {
+  width: 390px;
+  height: 100dvh;
+  margin: auto;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  overflow-y: auto; /* scroll 대신 auto 사용 */
+  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+  -ms-overflow-style: none; /* IE에서 스크롤바 숨기기 */
+}
+
+main::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge에서 스크롤바 숨기기 */
+}
+:root {
+  /* spacing */
+  --gutter: 20px;
+  --padding: 16px;
+  --padding-sm: 10px;
+
+  /* fontsize */
+  --heading: 1.6rem;
+  --body: 1.4rem;
+
+  /* color */
+  --blue: #1fa1ff;
+  --gray: #c4c4c4;
+}
