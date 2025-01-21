@@ -1,0 +1,38 @@
+.highlights {
+  display: flex;
+  gap: var(--padding);
+  overflow-x: auto; /* scroll 대신 auto 사용 */
+  overflow-y: hidden;
+  padding: var(--padding-sm) var(--gutter);
+  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+  -ms-overflow-style: none; /* IE에서 스크롤바 숨기기 */
+}
+
+.highlights::-webkit-scrollbar {
+  width: 0px; /* Chrome에서 가로 스크롤바 숨기기 */
+  height: 0px; /* Chrome에서 가로 스크롤바 숨기기 */
+}
+
+.highlights__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--body);
+}
+
+.highlights__item-image {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--gray);
+  padding: 2px;
+}
+
+.highlights__item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
